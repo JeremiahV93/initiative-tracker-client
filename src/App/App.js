@@ -13,6 +13,8 @@ import './App.scss';
 
 import Home from '../Components/Home';
 import LandingPage from '../Components/LandingPage/LandingPage';
+import Login from '../Components/Auth';
+import NewUser from '../Components/NewUser';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -27,12 +29,14 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
 
-const RoutesContainer = ({ authed }) => (
+const RoutesContainer = ({ authed, authToggle }) => (
     <div>
       <Switch>
         <PrivateRoute path="/home" component={Home} authed={authed} />
 
         <PublicRoute path='/landingPage' component={LandingPage} authed={authed} />
+        <PublicRoute path='/login' component={Login} authed={authed} authToggle={authToggle}/>
+        <PublicRoute path='/newUser' component={NewUser} authed={authed} authToggle={authToggle} />
 
         <Redirect from='*' to='/home' />
       </Switch>
@@ -62,7 +66,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-            <RoutesContainer authed={authed} />
+            <RoutesContainer authed={authed} authToggle={this.authToggle} />
         </BrowserRouter>
       </div>
     );
