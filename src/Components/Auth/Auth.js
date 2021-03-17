@@ -1,5 +1,6 @@
 import React from 'react';
-import UserData from '../Helpers/data/userData';
+import UserData from '../../Helpers/data/userData';
+import './auth.scss';
 
 class Auth extends React.Component {
   state = {
@@ -40,13 +41,17 @@ class Auth extends React.Component {
   render() {
     return (
       <form>
-        <div className="form-group">
+        <div className="form-row">
+          <div className="form-group center col-md-6">
           <label for="Username">Username:</label>
-          <input type="name" className="form-control" id="Username" onChange={this.usernameChange} aria-describedby="Username" placeholder="Enter Username"/>
+            <input type="name" className="form-control" id="Username" onChange={this.usernameChange} aria-describedby="Username" placeholder="Enter Username"/>
+          </div>
         </div>
-        <div className="form-group">
+        <div className="form-row">
+          <div className="form-group center col-md-6">
           <label for="Password">Password:</label>
-          <input type="password" className="form-control" id="Password" onChange={this.passwordChange} placeholder="Password"/>
+            <input type="password" className="form-control" id="Password" onChange={this.passwordChange} placeholder="Password"/>
+          </div>
         </div>
         <button onClick={this.authCheck} className="btn btn-primary">Submit</button>
       </form>
