@@ -9,8 +9,8 @@ class LandingPage extends React.Component {
       <div className='container'>
           <h1>Initiative Tracker!</h1>
         <div className='row-cols-2 buttons'>
-          <Link className="btn-info">Log In</Link>
-          <Link className="btn-success"> Create an Account</Link>
+          <Link to={'/login'} className="btn-info">Log In</Link>
+          <Link to={'/newUser'} className="btn-success"> Create an Account</Link>
         </div>
           <img src={logo} alt='Wax Seal' height={500}/>
         <div className='row-cols-2'>
