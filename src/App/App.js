@@ -10,10 +10,10 @@ import {
 import './App.scss';
 
 // import userData from '../Helpers/data/userData';
-
+import Navbar from '../Components/Navbar/NavBar';
 import Home from '../Components/Home';
 import LandingPage from '../Components/LandingPage/LandingPage';
-import Login from '../Components/Auth';
+import Login from '../Components/Auth/Auth';
 import NewUser from '../Components/NewUser';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
@@ -66,7 +66,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-            <RoutesContainer authed={authed} authToggle={this.authToggle} />
+          <Navbar authed={authed} authToggle={this.authToggle} />
+          <RoutesContainer authed={authed} authToggle={this.authToggle} />
         </BrowserRouter>
       </div>
     );
