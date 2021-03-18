@@ -20,6 +20,12 @@ const createHeaders = {
 
 const createEncounter = (encounterObj) => axios.post(`${url}encounters`, encounterObj, createHeaders);
 
+const updateEncounter = (id, encounterObj) => axios.put(`${url}encounters/${id}`, encounterObj, createHeaders);
+
+const deleteEncounter = (id) => axios.delete(`${url}encounters/${id}`, headers());
+
 const getAllActiveEncounters = () => axios.get(`${url}encounters?archive=False`, headers());
 
-export default { createEncounter, getAllActiveEncounters };
+export default {
+  createEncounter, getAllActiveEncounters, updateEncounter, deleteEncounter,
+};
