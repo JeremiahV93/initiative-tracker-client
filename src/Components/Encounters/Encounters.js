@@ -36,29 +36,39 @@ class Encounters extends React.Component {
 
   submitEncounter = (e) => {
     e.preventDefault();
-    const { name } = this.state;
+    const { name, updating, encounterId } = this.state;
     if (name === '') {
       this.setState({ isOpen: false });
       return;
     }
     const encounter = { name };
     const jsonObj = JSON.stringify(encounter);
-    encounterData.createEncounter(jsonObj)
-      .then(() => {
-        this.getEncounterData();
-        this.setState({ isOpen: false, name: '' });
-      })
-      .catch((err) => console.error(err));
+
+    if (updating) {
+      encounterData.updateEncounter(encounterId, jsonObj)
+        .then(() => {
+          this.getEncounterData();
+          this.setState({ isOpen: false, name: '', updating: false });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      encounterData.createEncounter(jsonObj)
+        .then(() => {
+          this.getEncounterData();
+          this.setState({ isOpen: false, name: '' });
+        })
+        .catch((err) => console.error(err));
+    }
   }
 
   deleteEncounter = (id) => {
     encounterData.deleteEncounter(id)
-      .then(() => { this.getCatData(); })
+      .then(() => { this.getEncounterData(); })
       .catch((err) => console.error(err));
   }
 
   render() {
-    const { isOpen, encounters } = this.state;
+    const { isOpen, encounters, name } = this.state;
     const { history } = this.props;
 
     const toggle = () => this.setState({ isOpen: !isOpen });
@@ -77,7 +87,7 @@ class Encounters extends React.Component {
                 <form>
                     <div className="form-group">
                       <label htmlFor="EncounterName">Encounter Name:</label>
-                      <input type="text" onChange={this.EncounterUpdate} className="form-control" aria-describedby="Encounterhelp" />
+                      <input type="text" value={name} onChange={this.EncounterUpdate} className="form-control" aria-describedby="Encounterhelp" />
                     </div>
                     <button onClick={this.submitEncounter} className="btn btn-primary">Submit</button>
                   </form>
