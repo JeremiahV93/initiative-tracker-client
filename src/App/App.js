@@ -15,6 +15,7 @@ import Home from '../Components/Home';
 import LandingPage from '../Components/LandingPage/LandingPage';
 import Login from '../Components/Auth/Auth';
 import NewUser from '../Components/NewUser';
+import Encounters from '../Components/Encounters/Encounters';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -33,6 +34,7 @@ const RoutesContainer = ({ authed, authToggle }) => (
     <div>
       <Switch>
         <PrivateRoute path="/home" component={Home} authed={authed} />
+        <PrivateRoute path="/encounters" component={Encounters} authed={authed} />
 
         <PublicRoute path='/landingPage' component={LandingPage} authed={authed} />
         <PublicRoute path='/login' component={Login} authed={authed} authToggle={authToggle}/>
