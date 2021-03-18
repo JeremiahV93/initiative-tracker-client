@@ -3,6 +3,7 @@ import {
   Collapse, Button, CardBody, Card,
 } from 'reactstrap';
 import encounterData from '../../Helpers/data/encounterData';
+import EncounterCard from './EncounterCard';
 
 class Encounters extends React.Component {
   state = {
@@ -27,6 +28,12 @@ class Encounters extends React.Component {
     this.setState({ name: e.target.value });
   }
 
+  updateEncounter = (name, encounterId) => {
+    this.setState({
+      name, encounterId, isOpen: true, updating: true,
+    });
+  }
+
   submitEncounter = (e) => {
     e.preventDefault();
     const { name } = this.state;
@@ -44,10 +51,20 @@ class Encounters extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  deleteEncounter = (id) => {
+    encounterData.deleteEncounter(id)
+      .then(() => { this.getCatData(); })
+      .catch((err) => console.error(err));
+  }
+
   render() {
-    const { isOpen } = this.state;
+    const { isOpen, encounters } = this.state;
+    const { history } = this.props;
 
     const toggle = () => this.setState({ isOpen: !isOpen });
+
+    const buildEncounters = encounters.map((encounter) => <EncounterCard encounter={encounter} history={history}
+     deleteEncounter={this.deleteEncounter} key={encounter.id} updateEncounter={this.updateEncounter} />);
 
     return (
       <div>
@@ -69,6 +86,7 @@ class Encounters extends React.Component {
           </Collapse>
 
         </div>
+        { buildEncounters }
       </div>
     );
   }
