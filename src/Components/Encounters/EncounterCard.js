@@ -23,8 +23,11 @@ class EncounterCard extends React.Component {
           <CardBody>
             <CardTitle tag="h5">{encounter.name}</CardTitle>
             <CardSubtitle tag="h6" className="mb-2 text-muted">Roomcode: {encounter.roomcode}</CardSubtitle>
+            <CardSubtitle tag="h6" className="mb-2 text-muted">Campaign: {encounter.campaign.name}</CardSubtitle>
+
             <ButtonGroup>
               <Button color="success">View</Button>
+              <Button color="info">Add Characters</Button>
               <Button color="warning" onClick={updateTrigger}>Update</Button>
               <Button color="danger" onClick={deleteTrigger}>Delete</Button>
             </ButtonGroup>
