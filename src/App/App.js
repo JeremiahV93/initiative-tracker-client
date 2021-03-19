@@ -17,6 +17,7 @@ import Login from '../Components/Auth/Auth';
 import NewUser from '../Components/NewUser';
 import Encounters from '../Components/Encounters/Encounters';
 import Campaigns from '../Components/Campaigns/Campaigns';
+import Monsters from '../Components/Monsters/Monsters';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -37,7 +38,7 @@ const RoutesContainer = ({ authed, authToggle }) => (
         <PrivateRoute path="/home" component={Home} authed={authed} />
         <PrivateRoute path="/encounters" component={Encounters} authed={authed} />
         <PrivateRoute path="/encounters/:campaignId" component={Encounters} authed={authed} />
-
+        <PrivateRoute path="/monsters" component={Monsters} authed={authed} />
         <PrivateRoute path="/campaigns" component={Campaigns} authed={authed} />
 
         <PublicRoute path='/landingPage' component={LandingPage} authed={authed} />
