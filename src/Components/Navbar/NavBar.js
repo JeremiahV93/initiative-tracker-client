@@ -34,10 +34,13 @@ class MyNavbar extends React.Component {
             <NavLink tag={RRNavLink} to='/home'>Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/'>Player Characters</NavLink>
+            <NavLink tag={RRNavLink} to='/campaigns'>Campaigns</NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={RRNavLink} to='/encounters'>Encounters</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={RRNavLink} to='/'>Player Characters</NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={RRNavLink} to='/'>Monsters</NavLink>

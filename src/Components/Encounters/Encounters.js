@@ -3,14 +3,17 @@ import {
   Collapse, Button, CardBody, Card,
 } from 'reactstrap';
 import encounterData from '../../Helpers/data/encounterData';
+import campaignData from '../../Helpers/data/campaignData';
 import EncounterCard from './EncounterCard';
 
 class Encounters extends React.Component {
   state = {
     encounters: [],
+    campaigns: [],
     isOpen: false,
     name: '',
     updating: false,
+    campaignId: null,
   }
 
   getEncounterData = () => {
@@ -19,13 +22,32 @@ class Encounters extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  getCampaignData = () => {
+    campaignData.getAllActiveCampaigns()
+      .then((res) => this.setState({ campaigns: res.data }))
+      .catch((err) => console.error(err));
+  }
+
   componentDidMount() {
     this.getEncounterData();
+    this.getCampaignData();
+    if (this.props.location.state === null) {
+      console.error('whoops');
+    } else {
+      encounterData.getEncountersOnCampaignID(this.props.location.state.campaignId)
+        .then((res) => this.setState({ encounters: res.data }))
+        .catch((err) => console.error(err));
+    }
   }
 
   EncounterUpdate = (e) => {
     e.preventDefault();
     this.setState({ name: e.target.value });
+  }
+
+  updateCampaignId = (e) => {
+    e.preventDefault();
+    this.setState({ campaignId: e.target.value });
   }
 
   updateEncounter = (name, encounterId) => {
@@ -36,12 +58,14 @@ class Encounters extends React.Component {
 
   submitEncounter = (e) => {
     e.preventDefault();
-    const { name, updating, encounterId } = this.state;
-    if (name === '') {
+    const {
+      name, updating, encounterId, campaignId,
+    } = this.state;
+    if (name === '' || campaignId === null) {
       this.setState({ isOpen: false });
       return;
     }
-    const encounter = { name };
+    const encounter = { name, campaignId };
     const jsonObj = JSON.stringify(encounter);
 
     if (updating) {
@@ -68,7 +92,9 @@ class Encounters extends React.Component {
   }
 
   render() {
-    const { isOpen, encounters, name } = this.state;
+    const {
+      isOpen, encounters, campaigns, name,
+    } = this.state;
     const { history } = this.props;
 
     const toggle = () => this.setState({ isOpen: !isOpen });
@@ -88,6 +114,13 @@ class Encounters extends React.Component {
                     <div className="form-group">
                       <label htmlFor="EncounterName">Encounter Name:</label>
                       <input type="text" value={name} onChange={this.EncounterUpdate} className="form-control" aria-describedby="Encounterhelp" />
+                    </div>
+                    <div className="form-group">
+                      <label for="encounterCampaign">Select Campaign</label>
+                      <select className="form-control" id="campaignId" onChange={this.updateCampaignId}>
+                        <option value={null} >Pick a Campaign</option>
+                        { campaigns.map((campaign) => <option value={campaign.id}>{campaign.name}</option>)}
+                      </select>
                     </div>
                     <button onClick={this.submitEncounter} className="btn btn-primary">Submit</button>
                   </form>
