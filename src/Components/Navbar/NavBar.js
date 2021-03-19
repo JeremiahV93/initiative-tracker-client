@@ -43,7 +43,7 @@ class MyNavbar extends React.Component {
             <NavLink tag={RRNavLink} to='/'>Player Characters</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/'>Monsters</NavLink>
+            <NavLink tag={RRNavLink} to='/monsters'>Monsters</NavLink>
           </NavItem>
           <NavItem>
             <Logout authToggle={authToggle} ></Logout>
