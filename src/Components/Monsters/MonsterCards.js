@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Card, CardBody,
-  CardTitle, CardSubtitle, Button, Table,
+  CardTitle, CardSubtitle, Table,
 } from 'reactstrap';
 
 import './monster.scss';
@@ -40,7 +40,7 @@ class MonsterCard extends React.Component {
               </tr>
             </tbody>
           </Table>
-          { monster.user === localStorage.getItem('user_id') ? <div>false!</div> : <Button>delete </Button>}
+          {/* { monster.user === localStorage.getItem('user_id') ? <div>false!</div> : <Button>delete </Button>} */}
         </CardBody>
       </Card>
       </div>
