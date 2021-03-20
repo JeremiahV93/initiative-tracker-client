@@ -157,6 +157,14 @@ class Monsters extends React.Component {
           <button onClick={this.goToMonsterForm} className='btn btn-primary'> Create Monster</button>
 
         </form>
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center pagination-lg">
+          <button value={prevUrl} onClick={this.previousPage} class="btn btn-primary">Prev</button>
+          <button value={nextUrl} onClick={this.nextPage} class="btn btn-primary">Next</button>
+          </ul>
+        </nav>
+
         <div className='monsterContainer container'>
           {buildCards}
         </div>

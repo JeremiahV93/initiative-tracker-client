@@ -222,7 +222,7 @@ class MonsterForm extends React.Component {
     const jsonObj = JSON.stringify(monsterObj);
 
     monsterData.createMonster(jsonObj)
-      .then(() => this.props.history.push('/mmomnsters'))
+      .then(() => this.props.history.push('/monsters'))
       .catch((err) => console.error(err));
   }
 
@@ -305,14 +305,6 @@ class MonsterForm extends React.Component {
           </div>
           <div className="row">
             <div class="form-group col-4">
-              <label >Speed:</label>
-              <input onChange={this.speedUpdate} type="text" class="form-control" />
-            </div>
-            <div class="form-group col-2">
-              <label >Size:</label>
-              <input onChange={this.sizeUpdate} type="text" class="form-control" />
-            </div>
-            <div class="form-group col-2">
               <label >Damage Resistances:</label>
               <input onChange={this.dmgResistUpdate} type="text" class="form-control" />
             </div>
@@ -326,6 +318,14 @@ class MonsterForm extends React.Component {
             </div>
           </div>
           <div className="row">
+          <div class="form-group col-2">
+              <label >Speed:</label>
+              <input onChange={this.speedUpdate} type="text" class="form-control" />
+            </div>
+            <div class="form-group col-2">
+              <label >Size:</label>
+              <input onChange={this.sizeUpdate} type="text" class="form-control" />
+            </div>
             <div className='form-group col-4'>
             <label>Monster Type:</label>
             <select className="form-control" onChange={this.typeUpdate}>
@@ -334,7 +334,7 @@ class MonsterForm extends React.Component {
             </select>
             </div>
             <div className="form-group col-4">
-          <label >CHallenge Rating:</label>
+          <label >Challenge Rating:</label>
             <select className="form-control" onChange={this.CRUpdate}>
             <option value={null} >Pick a CR</option>
               { challengeRatings.map((cr) => <option value={cr.challengeRating}>{cr.challengeRating}</option>)}
