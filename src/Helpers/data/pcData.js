@@ -20,6 +20,8 @@ const createHeaders = {
 
 const getAllPCs = () => axios.get(`${url}`, headers());
 
+const getOnePC = (pcID) => axios.get(`${url}/${pcID}`, headers());
+
 const updatePC = (pcId, pcObj) => axios.put(`${url}/${pcId}`, pcObj, createHeaders);
 
 const deletePC = (pcId) => axios.delete(`${url}/${pcId}`, headers());
@@ -27,5 +29,5 @@ const deletePC = (pcId) => axios.delete(`${url}/${pcId}`, headers());
 const createPC = (pcObj) => axios.post(`${url}`, pcObj, createHeaders);
 
 export default {
-  getAllPCs, updatePC, deletePC, createPC,
+  getAllPCs, updatePC, deletePC, createPC, getOnePC,
 };

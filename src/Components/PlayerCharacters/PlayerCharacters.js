@@ -30,8 +30,8 @@ class Characters extends React.Component {
 
   render() {
     const { players } = this.state;
-
-    const buildCards = players.map((character) => <CharacterCard deleteCharacter={this.deleteCharacter} character={character} key={character.id} />);
+    const { history } = this.props;
+    const buildCards = players.map((character) => <CharacterCard deleteCharacter={this.deleteCharacter} history={history} character={character} key={character.id} />);
 
     return (
           <div>

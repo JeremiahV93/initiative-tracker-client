@@ -15,6 +15,11 @@ class CharacterCard extends React.Component {
       deleteCharacter(character.id);
     };
 
+    const updateEvent = (e) => {
+      e.preventDefault();
+      this.props.history.push(`./update/${character.id}`);
+    };
+
     return (
       <div className='characterCard'>
       <Card >
@@ -45,7 +50,7 @@ class CharacterCard extends React.Component {
             </tbody>
           </Table>
           <ButtonGroup>
-            <Button> Update</Button>
+            <Button onClick={updateEvent}> Update</Button>
             <Button> Add to Encounter?</Button>
             <Button onClick={deleteCharEvent} > Delete</Button>
           </ButtonGroup>
