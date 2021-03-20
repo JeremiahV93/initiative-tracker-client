@@ -20,11 +20,11 @@ const createHeaders = {
 
 const createPair = (encounterObj) => axios.post(`${url}`, encounterObj, createHeaders);
 
-const updatePair = (id, encounterObj) => axios.put(`${url}/${id}`, createHeaders);
+const updatePair = (encounterObj) => axios.put(`${url}/1`, encounterObj, createHeaders);
 
-const getPairData = (encounterId) => axios.put(`${url}/${encounterId}`, headers());
+const getPairData = (encounterId) => axios.get(`${url}?encounterId=${encounterId}`, headers());
 
-const deletePair = (id) => axios.delete(`${url}/${id}`, headers());
+const deletePair = (obj) => axios.delete(`${url}/monster_delete`, obj, headers());
 
 export default {
   createPair, updatePair, getPairData, deletePair,

@@ -19,8 +19,10 @@ class Characters extends React.Component {
   }
 
   getEncountersForModal = (campaignId) => {
-    encounterData.getEncountersOnCampaignID(campaignId)
-      .then((res) => this.setState({ encounters: res.data }))
+    encounterData.getAllActiveEncounters()
+      .then((res) => {
+        this.setState({ encounters: res.data });
+      })
       .catch((err) => console.error(err));
   }
 
@@ -31,6 +33,7 @@ class Characters extends React.Component {
 
   componentDidMount() {
     this.getCharacters();
+    this.getEncountersForModal();
   }
 
   deleteCharacter = (id) => {
@@ -57,20 +60,22 @@ class Characters extends React.Component {
     pairData.createPair(jsonObj)
       .then((res) => {
         this.setState({
-          encounterId: null, characterId: null, encounters: [], modal: false,
+          encounterId: null, characterId: null, modal: false,
         });
+        this.getEncountersForModal();
       })
       .catch((err) => console.error(err));
   }
 
   render() {
-    const { players, modal, encounters } = this.state;
+    const {
+      players, modal, encounters, campaignId,
+    } = this.state;
     const { history, className } = this.props;
     const toggle = () => this.setState({ modal: !modal });
 
-    const openModal = (campaignId, characterId) => {
-      this.getEncountersForModal(campaignId);
-      this.setState({ characterId });
+    const openModal = (cid, characterId) => {
+      this.setState({ characterId, campaignId: cid });
       toggle();
     };
 
@@ -92,7 +97,7 @@ class Characters extends React.Component {
                       <Label> Add Character to an Encounter </Label>
                         <Input onChange={this.updateEncounterId} type="select" >
                           <options>Encounter options</options>
-                          {encounters.map((encounter) => <option value={encounter.id} >{encounter.name}</option>)}
+                          {encounters.filter((encounter) => encounter.campaign.id === campaignId).map((encounter) => <option value={encounter.id} >{encounter.name}</option>)}
                         </Input>
                     </FormGroup>
                   </Form>

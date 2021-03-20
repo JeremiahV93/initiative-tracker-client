@@ -22,7 +22,7 @@ class CharacterCard extends React.Component {
 
     const modalButton = (e) => {
       e.preventDefault();
-      openModal(character.id, character.campaign);
+      openModal(character.campaign, character.id);
     };
 
     return (
