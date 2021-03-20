@@ -21,6 +21,7 @@ import Monsters from '../Components/Monsters/Monsters';
 import MonsterForm from '../Components/Monsters/MonsterForm';
 import Characters from '../Components/PlayerCharacters/PlayerCharacters';
 import CharacterForm from '../Components/PlayerCharacters/CharacterForm';
+import UpdateForm from '../Components/PlayerCharacters/UpdateForm';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -46,6 +47,7 @@ const RoutesContainer = ({ authed, authToggle }) => (
         <PrivateRoute path="/monster-form" component={MonsterForm} authed={authed} />
         <PrivateRoute path="/characters" component={Characters} authed={authed} />
         <PrivateRoute path="/character-form" component={CharacterForm} authed={authed} />
+        <PrivateRoute path="/update/:characterId" component={UpdateForm} authed={authed} />
 
         <PublicRoute path='/landingPage' component={LandingPage} authed={authed} />
         <PublicRoute path='/login' component={Login} authed={authed} authToggle={authToggle}/>
