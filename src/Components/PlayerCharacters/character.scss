@@ -1,0 +1,10 @@
+.characterCard {
+    padding: 1.5em 1em;
+    width: 30em;
+}
+
+.characterContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
