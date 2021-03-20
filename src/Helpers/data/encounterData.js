@@ -26,8 +26,10 @@ const deleteEncounter = (id) => axios.delete(`${url}encounters/${id}`, headers()
 
 const getAllActiveEncounters = () => axios.get(`${url}encounters?archive=False`, headers());
 
-const getEncountersOnCampaignID = (campaignId) => axios.get(`${url}encounters?campaign=${campaignId}`, headers());
+const getOneEncounter = (id) => axios.get(`${url}encounters/${id}`, headers());
+
+const getEncountersOnCampaignID = (encounterId) => axios.get(`${url}encounters/${encounterId}`, headers());
 
 export default {
-  createEncounter, getAllActiveEncounters, updateEncounter, deleteEncounter, getEncountersOnCampaignID,
+  createEncounter, getAllActiveEncounters, updateEncounter, deleteEncounter, getEncountersOnCampaignID, getOneEncounter,
 };

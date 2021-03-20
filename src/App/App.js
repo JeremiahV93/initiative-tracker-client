@@ -11,7 +11,7 @@ import './App.scss';
 
 // import userData from '../Helpers/data/userData';
 import Navbar from '../Components/Navbar/NavBar';
-import Home from '../Components/Home';
+// import Home from '../Components/Home';
 import LandingPage from '../Components/LandingPage/LandingPage';
 import Login from '../Components/Auth/Auth';
 import NewUser from '../Components/NewUser';
@@ -22,6 +22,7 @@ import MonsterForm from '../Components/Monsters/MonsterForm';
 import Characters from '../Components/PlayerCharacters/PlayerCharacters';
 import CharacterForm from '../Components/PlayerCharacters/CharacterForm';
 import UpdateForm from '../Components/PlayerCharacters/UpdateForm';
+import EncounterRoom from '../Components/EncounterRoom/EncounterRoom';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -48,6 +49,7 @@ const RoutesContainer = ({ authed, authToggle }) => (
         <PrivateRoute path="/characters" component={Characters} authed={authed} />
         <PrivateRoute path="/character-form" component={CharacterForm} authed={authed} />
         <PrivateRoute path="/update/:characterId" component={UpdateForm} authed={authed} />
+        <PrivateRoute path="/encounter-room/:encounterId" component={EncounterRoom} authed={authed} />
 
         <PublicRoute path='/landingPage' component={LandingPage} authed={authed} />
         <PublicRoute path='/login' component={Login} authed={authed} authToggle={authToggle}/>

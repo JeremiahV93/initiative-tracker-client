@@ -17,6 +17,10 @@ class EncounterCard extends React.Component {
       deleteEncounter(encounter.id);
     };
 
+    const goToEncounterRoom = () => {
+      this.props.history.push(`./encounter-room/${encounter.id}`);
+    };
+
     return (
       <div>
         <Card>
@@ -26,8 +30,7 @@ class EncounterCard extends React.Component {
             <CardSubtitle tag="h6" className="mb-2 text-muted">Campaign: {encounter.campaign.name}</CardSubtitle>
 
             <ButtonGroup>
-              <Button color="success">View</Button>
-              <Button color="info">Add Characters</Button>
+              <Button color="success" onClick={goToEncounterRoom}>View</Button>
               <Button color="warning" onClick={updateTrigger}>Update</Button>
               <Button color="danger" onClick={deleteTrigger}>Delete</Button>
             </ButtonGroup>
