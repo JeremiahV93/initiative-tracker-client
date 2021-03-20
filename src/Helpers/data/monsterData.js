@@ -36,7 +36,7 @@ const monsterPages = (pageNum) => axios.get(`${url}/monster_pages?pages=${pageNu
 
 const monsterPageUrl = (nextPrevUrl) => axios.get(`${nextPrevUrl}`, headers());
 
-const createMonster = (monsterObj) => axios.post(`${url}/monster_types`, monsterObj, createHeaders);
+const createMonster = (monsterObj) => axios.post(`${url}`, monsterObj, createHeaders);
 
 const getOneMonster = (monsterId) => axios.get(`${url}/${monsterId}`, headers());
 

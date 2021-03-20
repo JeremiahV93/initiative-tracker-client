@@ -89,7 +89,10 @@ class Monsters extends React.Component {
     const { prevUrl } = this.state;
     if (prevUrl !== '') {
       monsterData.monsterPageUrl(prevUrl)
-        .then((res) => this.setState({ monsters: res.data.results, nextUrl: res.data.next, prevUrl: res.data.previous }));
+        .then((res) => {
+          this.setState({ monsters: res.data.results, nextUrl: res.data.next, prevUrl: res.data.previous });
+          window.scroll(0, 0);
+        });
     }
   }
 
@@ -98,8 +101,16 @@ class Monsters extends React.Component {
     const { nextUrl } = this.state;
     if (nextUrl !== '') {
       monsterData.monsterPageUrl(nextUrl)
-        .then((res) => this.setState({ monsters: res.data.results, nextUrl: res.data.next, prevUrl: res.data.previous }));
+        .then((res) => {
+          this.setState({ monsters: res.data.results, nextUrl: res.data.next, prevUrl: res.data.previous });
+          window.scroll(0, 0);
+        });
     }
+  }
+
+  goToMonsterForm = (e) => {
+    e.preventDefault();
+    this.props.history.push('/monster-form');
   }
 
   componentDidMount() {
@@ -143,6 +154,7 @@ class Monsters extends React.Component {
           </div>
           <button type="submit" onClick={this.getActiveUserMonsters} class="btn btn-primary">My Monsters</button>
           <button type="submit" onClick={this.resetMonsterPage} class="btn btn-primary">All Monsters</button>
+          <button onClick={this.goToMonsterForm} className='btn btn-primary'> Create Monster</button>
 
         </form>
         <div className='monsterContainer container'>
