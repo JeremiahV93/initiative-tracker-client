@@ -23,6 +23,11 @@ class Characters extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  goToCharacterForm = (e) => {
+    e.preventDefault();
+    this.props.history.push('/character-form');
+  }
+
   render() {
     const { players } = this.state;
 
@@ -31,7 +36,7 @@ class Characters extends React.Component {
     return (
           <div>
             <h1>Player Characters</h1>
-            Need to make a for to update/add, and a delete button.
+            <button onClick={this.goToCharacterForm} className='btn btn-primary'>Create Player Character</button>
             <div className="characterContainer">
               { buildCards }
             </div>
