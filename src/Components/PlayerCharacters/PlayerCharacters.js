@@ -17,10 +17,16 @@ class Characters extends React.Component {
     this.getCharacters();
   }
 
+  deleteCharacter = (id) => {
+    characterData.deletePC(id)
+      .then(() => { this.getCharacters(); })
+      .catch((err) => console.error(err));
+  }
+
   render() {
     const { players } = this.state;
 
-    const buildCards = players.map((character) => <CharacterCard character={character} key={character.id} />);
+    const buildCards = players.map((character) => <CharacterCard deleteCharacter={this.deleteCharacter} character={character} key={character.id} />);
 
     return (
           <div>

@@ -8,7 +8,13 @@ import './character.scss';
 
 class CharacterCard extends React.Component {
   render() {
-    const { character } = this.props;
+    const { character, deleteCharacter } = this.props;
+
+    const deleteCharEvent = (e) => {
+      e.preventDefault();
+      deleteCharacter(character.id);
+    };
+
     return (
       <div className='characterCard'>
       <Card >
@@ -41,7 +47,7 @@ class CharacterCard extends React.Component {
           <ButtonGroup>
             <Button> Update</Button>
             <Button> Add to Encounter?</Button>
-            <Button> delete</Button>
+            <Button onClick={deleteCharEvent} > Delete</Button>
           </ButtonGroup>
         </CardBody>
       </Card>
