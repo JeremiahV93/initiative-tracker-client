@@ -1,11 +1,27 @@
 import React from 'react';
+import {
+  Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, Label, Input, FormGroup,
+} from 'reactstrap';
 import characterData from '../../Helpers/data/pcData';
+import encounterData from '../../Helpers/data/encounterData';
+import pairData from '../../Helpers/data/encounterPair';
 import CharacterCard from './CharacterCards';
+
 import './character.scss';
 
 class Characters extends React.Component {
   state = {
     players: [],
+    encounters: [],
+    modal: false,
+    encounterId: null,
+    playerId: null,
+  }
+
+  getEncountersForModal = (campaignId) => {
+    encounterData.getEncountersOnCampaignID(campaignId)
+      .then((res) => this.setState({ encounters: res.data }))
+      .catch((err) => console.error(err));
   }
 
   getCharacters = () => {
@@ -28,10 +44,37 @@ class Characters extends React.Component {
     this.props.history.push('/character-form');
   }
 
+  updateEncounterId = (e) => {
+    e.preventDefault();
+    this.setState({ encounterId: e.target.value });
+  }
+
+  createEncounterPair = (e) => {
+    e.preventDefault();
+    const { encounterId, characterId } = this.state;
+    const pairObj = { encounterId, characterId, monsterId: '' };
+    const jsonObj = JSON.stringify(pairObj);
+    pairData.createPair(jsonObj)
+      .then((res) => {
+        this.setState({
+          encounterId: null, characterId: null, encounters: [], modal: false,
+        });
+      })
+      .catch((err) => console.error(err));
+  }
+
   render() {
-    const { players } = this.state;
-    const { history } = this.props;
-    const buildCards = players.map((character) => <CharacterCard deleteCharacter={this.deleteCharacter} history={history} character={character} key={character.id} />);
+    const { players, modal, encounters } = this.state;
+    const { history, className } = this.props;
+    const toggle = () => this.setState({ modal: !modal });
+
+    const openModal = (campaignId, characterId) => {
+      this.getEncountersForModal(campaignId);
+      this.setState({ characterId });
+      toggle();
+    };
+
+    const buildCards = players.map((character) => <CharacterCard deleteCharacter={this.deleteCharacter} history={history} openModal={openModal} character={character} key={character.id} />);
 
     return (
           <div>
@@ -39,6 +82,26 @@ class Characters extends React.Component {
             <button onClick={this.goToCharacterForm} className='btn btn-primary'>Create Player Character</button>
             <div className="characterContainer">
               { buildCards }
+            </div>
+            <div>
+              <Modal isOpen={modal} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>Assign Character to an Encounter</ModalHeader>
+                <ModalBody>
+                  <Form>
+                    <FormGroup>
+                      <Label> Add Character to an Encounter </Label>
+                        <Input onChange={this.updateEncounterId} type="select" >
+                          <options>Encounter options</options>
+                          {encounters.map((encounter) => <option value={encounter.id} >{encounter.name}</option>)}
+                        </Input>
+                    </FormGroup>
+                  </Form>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onClick={this.createEncounterPair}>Assign to Encounter</Button>{' '}
+                  <Button color="secondary" onClick={toggle}>Cancel</Button>
+                </ModalFooter>
+              </Modal>
             </div>
           </div>
     );

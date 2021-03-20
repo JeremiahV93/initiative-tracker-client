@@ -8,7 +8,7 @@ import './character.scss';
 
 class CharacterCard extends React.Component {
   render() {
-    const { character, deleteCharacter } = this.props;
+    const { character, deleteCharacter, openModal } = this.props;
 
     const deleteCharEvent = (e) => {
       e.preventDefault();
@@ -18,6 +18,11 @@ class CharacterCard extends React.Component {
     const updateEvent = (e) => {
       e.preventDefault();
       this.props.history.push(`./update/${character.id}`);
+    };
+
+    const modalButton = (e) => {
+      e.preventDefault();
+      openModal(character.id, character.campaign);
     };
 
     return (
@@ -51,7 +56,7 @@ class CharacterCard extends React.Component {
           </Table>
           <ButtonGroup>
             <Button onClick={updateEvent}> Update</Button>
-            <Button> Add to Encounter?</Button>
+            <Button onClick={modalButton}> Add to an Encounter</Button>
             <Button onClick={deleteCharEvent} > Delete</Button>
           </ButtonGroup>
         </CardBody>
