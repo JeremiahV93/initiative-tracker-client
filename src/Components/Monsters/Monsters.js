@@ -1,11 +1,18 @@
 import React from 'react';
+import {
+  Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, Label, Input, FormGroup,
+} from 'reactstrap';
 import monsterData from '../../Helpers/data/monsterData';
-
+import encounterData from '../../Helpers/data/encounterData';
+import pairData from '../../Helpers/data/encounterPair';
 import MonsterCard from './MonsterCards';
 import './monster.scss';
 
 class Monsters extends React.Component {
   state = {
+    encounters: [],
+    monsterId: null,
+    encounterId: null,
     monsters: [],
     nextUrl: '',
     prevUrl: '',
@@ -14,6 +21,13 @@ class Monsters extends React.Component {
     monsterTypes: [],
     typeSearch: '',
     nameSearch: '',
+    modal: false,
+  }
+
+  getEncountersForModal = () => {
+    encounterData.getAllActiveEncounters()
+      .then((res) => this.setState({ encounters: res.data }))
+      .catch((err) => console.error(err));
   }
 
   getInitialMonsterData = () => {
@@ -117,14 +131,42 @@ class Monsters extends React.Component {
     this.getInitialMonsterData();
     this.getMonsterTypes();
     this.getMonsterchallengeRatings();
+    this.getEncountersForModal();
+  }
+
+  updateEncounterId = (e) => {
+    e.preventDefault();
+    this.setState({ encounterId: e.target.value });
+  }
+
+  createEncounterPair = (e) => {
+    e.preventDefault();
+    const { encounterId, monsterId } = this.state;
+    const pairObj = { encounterId, monsterId, characterId: '' };
+    const jsonObj = JSON.stringify(pairObj);
+    pairData.createPair(jsonObj)
+      .then((res) => {
+        this.setState({
+          encounterId: null, monsterId: null, modal: false,
+        });
+      })
+      .catch((err) => console.error(err));
   }
 
   render() {
     const {
-      monsterTypes, challengeRatings, monsters, nextUrl, prevUrl,
+      monsterTypes, challengeRatings, monsters, nextUrl, prevUrl, encounters, modal,
     } = this.state;
+    const { className } = this.props;
+    const toggle = () => this.setState({ modal: !modal });
 
-    const buildCards = monsters.map((monster) => <MonsterCard monster={monster} key={monster.id}
+    const openModal = (monsterId) => {
+      this.getEncountersForModal();
+      this.setState({ monsterId });
+      toggle();
+    };
+
+    const buildCards = monsters.map((monster) => <MonsterCard monster={monster} openModal={openModal} key={monster.id}
      />);
 
     return (
@@ -175,6 +217,28 @@ class Monsters extends React.Component {
           <button value={nextUrl} onClick={this.nextPage} class="btn btn-primary">Next</button>
           </ul>
         </nav>
+
+        <div>
+              <Modal isOpen={modal} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>Assign Monster to an Encounter</ModalHeader>
+                <ModalBody>
+                  <Form>
+                    <FormGroup>
+                      <Label> Add Monster to an Encounter </Label>
+                        <Input onChange={this.updateEncounterId} type="select" >
+                          <options>Encounter options</options>
+                          {encounters.map((encounter) => <option value={encounter.id} >{encounter.name}</option>)}
+                        </Input>
+                    </FormGroup>
+                  </Form>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onClick={this.createEncounterPair}>Assign to Encounter</Button>{' '}
+                  <Button color="secondary" onClick={toggle}>Cancel</Button>
+                </ModalFooter>
+              </Modal>
+            </div>
+
       </div>
     );
   }

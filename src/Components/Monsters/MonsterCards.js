@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Card, CardBody,
+  Card, CardBody, Button,
   CardTitle, CardSubtitle, Table,
 } from 'reactstrap';
 
@@ -8,7 +8,12 @@ import './monster.scss';
 
 class MonsterCard extends React.Component {
   render() {
-    const { monster } = this.props;
+    const { monster, openModal } = this.props;
+
+    const modalButton = (e) => {
+      e.preventDefault();
+      openModal(monster.id, monster.campaign);
+    };
     return (
       <div className='monsterCard'>
       <Card >
@@ -40,7 +45,7 @@ class MonsterCard extends React.Component {
               </tr>
             </tbody>
           </Table>
-          {/* { monster.user === localStorage.getItem('user_id') ? <div>false!</div> : <Button>delete </Button>} */}
+          <Button onClick={modalButton}> Add To An Encounter </Button>
         </CardBody>
       </Card>
       </div>

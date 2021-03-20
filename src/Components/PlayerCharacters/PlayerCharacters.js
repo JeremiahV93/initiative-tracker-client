@@ -98,7 +98,7 @@ class Characters extends React.Component {
                   </Form>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="primary" onClick={toggle, this.createEncounterPair}>Assign to Encounter</Button>{' '}
+                  <Button color="primary" onClick={this.createEncounterPair}>Assign to Encounter</Button>{' '}
                   <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
               </Modal>

@@ -20,4 +20,12 @@ const createHeaders = {
 
 const createPair = (encounterObj) => axios.post(`${url}`, encounterObj, createHeaders);
 
-export default { createPair };
+const updatePair = (id, encounterObj) => axios.put(`${url}/${id}`, createHeaders);
+
+const getPairData = (encounterId) => axios.put(`${url}/${encounterId}`, headers());
+
+const deletePair = (id) => axios.delete(`${url}/${id}`, headers());
+
+export default {
+  createPair, updatePair, getPairData, deletePair,
+};

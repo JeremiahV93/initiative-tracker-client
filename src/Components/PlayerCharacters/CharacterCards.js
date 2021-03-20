@@ -20,7 +20,7 @@ class CharacterCard extends React.Component {
       this.props.history.push(`./update/${character.id}`);
     };
 
-    const updateButton = (e) => {
+    const modalButton = (e) => {
       e.preventDefault();
       openModal(character.id, character.campaign);
     };
@@ -56,7 +56,7 @@ class CharacterCard extends React.Component {
           </Table>
           <ButtonGroup>
             <Button onClick={updateEvent}> Update</Button>
-            <Button onClick={updateButton}> Add to an Encounter</Button>
+            <Button onClick={modalButton}> Add to an Encounter</Button>
             <Button onClick={deleteCharEvent} > Delete</Button>
           </ButtonGroup>
         </CardBody>
