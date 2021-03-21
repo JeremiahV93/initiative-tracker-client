@@ -55,7 +55,7 @@ class PlayerBar extends React.Component {
     const { char } = this.props;
     const { characterData } = this.state;
     return (
-      <div className="card container">
+      <div className="card player-card container">
       <div className="card-body">
         <h4 className="card-title">{char.characterId.name}</h4>
         <h6 className="card-subtitle mb-2 text-muted"> Level: {char.characterId.level} {char.characterId.characterClass}</h6>

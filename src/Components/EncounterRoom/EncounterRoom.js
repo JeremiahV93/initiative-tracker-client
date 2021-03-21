@@ -59,8 +59,8 @@ class EncounterRoom extends React.Component {
       <div className="flex">
         <h1> {encounter.name} </h1>
         <h3>Room Code: {encounter.roomcode} </h3>
-        <h4> Please Save after each change in initiative and currentHealth</h4>
-        <div className="justify-content-center">
+        <h4> Please Save after each change in Initiative and Current Health</h4>
+        <div className="character-container">
           {buildCards}
         </div>
       </div>

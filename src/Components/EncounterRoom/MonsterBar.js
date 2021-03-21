@@ -63,8 +63,8 @@ class MonsterBar extends React.Component {
     const { characterData } = this.state;
 
     return (
-      <div className="card container">
-      <div className="card-body">
+      <div className="card monster-card container">
+      <div className="card-body ">
         <h4 className="card-title">{char.monsterId.name}</h4>
         <h6 className="card-subtitle mb-2 text-muted"> Type: {char.monsterId.monsterType} Challenge Rating: {char.monsterId.challengeRating} Size: {char.monsterId.size} </h6>
         <div className="row justify-content-around">

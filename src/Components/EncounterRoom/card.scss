@@ -4,3 +4,16 @@
         padding: .5em 1em;
     }
 }
+
+.character-container {
+    display: block;
+    align-content: center;
+}
+
+.monster-card {
+    border: solid 7px #f21111;
+}
+
+.player-card {
+    border: solid 7px #236af7;
+}
