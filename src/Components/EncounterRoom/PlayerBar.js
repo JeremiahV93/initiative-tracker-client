@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import playerData from '../../Helpers/data/pcData';
 
@@ -23,14 +24,16 @@ class PlayerBar extends React.Component {
   }
 
   updateButton = () => {
-    const { updatePair, char } = this.props;
+    const { updatePlayerPair, char } = this.props;
     const {
       initiative, concentration, currentHealth,
     } = this.state;
+    const currentHP = Number(currentHealth);
+    const currentInni = Number(initiative);
     const pairObj = {
-      monster: false, initiative, concentration, currentHealth, pairId: char.id,
+      initiative: currentInni, concentration, currentHealth: currentHP,
     };
-    updatePair(pairObj);
+    updatePlayerPair(char.id, pairObj);
   }
 
   updateHP = (e) => {
@@ -69,6 +72,7 @@ class PlayerBar extends React.Component {
             <i className="fas fa-shoe-prints"></i>Speed:{char.characterId.speed}
           </div>
           <div>
+            <i class="fas fa-hourglass-half"></i>
             <label>Initiative: <input onChange={this.updateIni} type="number" defaultValue={char.initiative}></input> </label>
           </div>
       </div>
@@ -76,15 +80,13 @@ class PlayerBar extends React.Component {
         <div className='stat'>
           <h5>Stat Modifiers:</h5>
             <div className='throw'>
-              STR: {characterData.strength_mod} DEX:  {characterData.dexterity_mod} CON:  {characterData.constitution_mod}
-              INT:  {characterData.intellidence_mod} WIS:  {characterData.wisdom_mod} CHA:  {characterData.charisma_mod}
+              STR: {characterData.strength_mod} DEX:  {characterData.dexterity_mod} CON:  {characterData.constitution_mod} INT:  {characterData.intellidence_mod} WIS:  {characterData.wisdom_mod} CHA:  {characterData.charisma_mod}
             </div>
         </div>
         <div className='stat'>
           <h5>Saving Throws:</h5>
             <div className='throw'>
-            STR: {characterData.strength_ST} DEX:  {characterData.dexterity_ST} CON:  {characterData.constitution_ST}
-            INT:  {characterData.intellidence_ST} WIS:  {characterData.wisdom_ST} CHA:  {characterData.charisma_ST}
+            STR: {characterData.strength_ST} DEX:  {characterData.dexterity_ST} CON:  {characterData.constitution_ST} INT:  {characterData.intellidence_ST} WIS:  {characterData.wisdom_ST} CHA:  {characterData.charisma_ST}
             </div>
         </div>
       </div>

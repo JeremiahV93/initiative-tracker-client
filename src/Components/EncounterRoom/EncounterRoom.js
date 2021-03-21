@@ -34,18 +34,18 @@ class EncounterRoom extends React.Component {
     this.getEncounterData();
   }
 
-  updatePair = (id, updateObj) => {
-    const jsonObj = JSON.stringify(id, updateObj);
-    pairData.updatePair(jsonObj)
+  updateMonsterPair = (id, updateObj) => {
+    const jsonObj = JSON.stringify(updateObj);
+    pairData.updateMonsterPair(id, jsonObj)
       .then((res) => { this.getPlayerMonsterData(); })
       .catch((err) => console.error(err));
   }
 
-  deletePair = (obj) => {
-    const jsonObj = JSON.stringify(obj);
-    pairData.deletePair(jsonObj)
+  updatePlayerPair = (id, updateObj) => {
+    const jsonObj = JSON.stringify(updateObj);
+    pairData.updatePlayerPair(id, jsonObj)
       .then((res) => { this.getPlayerMonsterData(); })
-      .then((err) => console.error(err));
+      .catch((err) => console.error(err));
   }
 
   render() {
@@ -53,7 +53,7 @@ class EncounterRoom extends React.Component {
 
     const buildCards = characters.map((char) => (
       // eslint-disable-next-line max-len
-      char.characterId ? <PlayerBar char={char} encounterId={encounterId} deletePair={this.deletePair} updatePair={this.updatePair} key={char.id} /> : <MonsterBar char={char} deletePair={this.deletePair} encounterId={encounterId} updatePair={this.updatePair} key={char.id} />));
+      char.characterId ? <PlayerBar char={char} encounterId={encounterId} updatePlayerPair={this.updatePlayerPair} key={char.id} /> : <MonsterBar char={char} encounterId={encounterId} updateMonsterPair={this.updateMonsterPair} key={char.id} />));
 
     return (
       <div className="flex">

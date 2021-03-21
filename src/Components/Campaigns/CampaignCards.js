@@ -25,7 +25,7 @@ class CampaignCard extends React.Component {
 
     return (
       <div>
-        <Card>
+        <Card className="campaignCard">
           <CardBody>
             <CardTitle tag="h5">{campaign.name}</CardTitle>
             <ButtonGroup>
