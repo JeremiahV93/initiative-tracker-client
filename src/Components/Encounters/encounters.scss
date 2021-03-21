@@ -1,0 +1,17 @@
+.encounterCard {
+    width: 20em;
+    border: solid 1px black;
+}
+
+.cardContainer {
+    margin-top: 3em;
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around;
+}
+
+
+h1 {
+    margin-top: 1em;
+    margin-bottom: 1.25em;
+}

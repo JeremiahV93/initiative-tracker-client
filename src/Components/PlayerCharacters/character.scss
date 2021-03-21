@@ -1,15 +1,15 @@
 .characterCard {
     padding: 1.5em 1em;
-    width: 30em;
+    width: 28em;
 }
 
 .characterContainer {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-input {
-    width: 3em !important;
-    border: none;
-}
+// input {
+//     width: 3em !important;
+//     border: none;
+// }

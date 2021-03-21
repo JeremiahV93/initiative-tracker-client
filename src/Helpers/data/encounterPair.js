@@ -2,6 +2,8 @@
 import axios from 'axios';
 
 const url = 'http://127.0.0.1:8000/encounterpairs';
+const monsterUrl = 'http://127.0.0.1:8000/monsterPairs';
+const playerUrl = 'http://127.0.0.1:8000/playerPairs';
 
 const headers = () => (
   {
@@ -20,12 +22,13 @@ const createHeaders = {
 
 const createPair = (encounterObj) => axios.post(`${url}`, encounterObj, createHeaders);
 
-const updatePair = (encounterObj) => axios.put(`${url}/1`, encounterObj, createHeaders);
+const updateMonsterPair = (id, encounterObj) => axios.put(`${monsterUrl}/${id}`, encounterObj, createHeaders);
+const updatePlayerPair = (id, encounterObj) => axios.put(`${playerUrl}/${id}`, encounterObj, createHeaders);
 
 const getPairData = (encounterId) => axios.get(`${url}?encounterId=${encounterId}`, headers());
 
 const deletePair = (obj) => axios.delete(`${url}/monster_delete`, obj, headers());
 
 export default {
-  createPair, updatePair, getPairData, deletePair,
+  createPair, updateMonsterPair, getPairData, deletePair, updatePlayerPair,
 };

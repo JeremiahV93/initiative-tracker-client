@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import campaignData from '../../Helpers/data/campaignData';
 import CampaignCard from './CampaignCards';
+import './campaigns.scss';
 
 class Campaigns extends React.Component {
   state = {
@@ -96,7 +97,10 @@ class Campaigns extends React.Component {
           </Collapse>
 
         </div>
+        <div className="cardContainer">
         { buildCampaigns }
+
+        </div>
       </div>
     );
   }

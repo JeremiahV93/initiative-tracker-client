@@ -172,6 +172,7 @@ class Monsters extends React.Component {
     return (
       <div>
         <h1>Monsters</h1>
+        <div className="justify-content-center">
         <form>
           <div class="form-group col-6">
             <label for="monsterName">Search for Monster by Name:</label>
@@ -199,7 +200,7 @@ class Monsters extends React.Component {
           <button onClick={this.goToMonsterForm} className='btn btn-primary'> Create Monster</button>
 
         </form>
-
+        </div>
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center pagination-lg">
           <button value={prevUrl} onClick={this.previousPage} class="btn btn-primary">Prev</button>
