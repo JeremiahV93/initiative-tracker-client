@@ -1,0 +1,10 @@
+.encounterCard {
+    width: 20em;
+    border: solid 1px black;
+}
+
+.cardContainer {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around;
+}

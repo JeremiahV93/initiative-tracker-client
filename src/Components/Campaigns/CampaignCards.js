@@ -17,10 +17,11 @@ class CampaignCard extends React.Component {
       deleteCampaign(campaign.id);
     };
 
-    const link = (e) => {
-      e.preventDefault();
-      this.props.history.push({ pathname: '/encounters', state: { campaignId: campaign.id } });
-    };
+    // Need to create new privateRoute component for just printing campaign encounters
+    // const link = (e) => {
+    //   e.preventDefault();
+    //   this.props.history.push({ pathname: '/encounters', state: { campaignId: campaign.id } });
+    // };
 
     return (
       <div>
@@ -28,7 +29,7 @@ class CampaignCard extends React.Component {
           <CardBody>
             <CardTitle tag="h5">{campaign.name}</CardTitle>
             <ButtonGroup>
-              <Button color="success" onClick={link}>See Encounters</Button>
+              {/* <Button color="success" onClick={link}>See Encounters</Button> */}
               <Button color="warning" onClick={updateTrigger}>Update</Button>
               <Button color="danger" onClick={deleteTrigger}>Delete</Button>
             </ButtonGroup>

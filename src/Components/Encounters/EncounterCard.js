@@ -23,7 +23,7 @@ class EncounterCard extends React.Component {
 
     return (
       <div>
-        <Card>
+        <Card className="encounterCard">
           <CardBody>
             <CardTitle tag="h5">{encounter.name}</CardTitle>
             <CardSubtitle tag="h6" className="mb-2 text-muted">Roomcode: {encounter.roomcode}</CardSubtitle>

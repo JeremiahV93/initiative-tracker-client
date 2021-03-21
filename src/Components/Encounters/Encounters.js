@@ -5,6 +5,7 @@ import {
 import encounterData from '../../Helpers/data/encounterData';
 import campaignData from '../../Helpers/data/campaignData';
 import EncounterCard from './EncounterCard';
+import './encounters.scss';
 
 class Encounters extends React.Component {
   state = {
@@ -31,13 +32,6 @@ class Encounters extends React.Component {
   componentDidMount() {
     this.getEncounterData();
     this.getCampaignData();
-    if (this.props.location.state === null) {
-      console.error('whoops');
-    } else {
-      encounterData.getEncountersOnCampaignID(this.props.location.state.campaignId)
-        .then((res) => this.setState({ encounters: res.data }))
-        .catch((err) => console.error(err));
-    }
   }
 
   EncounterUpdate = (e) => {
@@ -108,7 +102,7 @@ class Encounters extends React.Component {
         <div>
           <Button onClick={toggle} className="btn btn-info">Create Encounter</Button>
           <Collapse isOpen={isOpen}>
-          <Card>
+          <Card >
                 <CardBody>
                 <form>
                     <div className="form-group">
@@ -129,7 +123,10 @@ class Encounters extends React.Component {
           </Collapse>
 
         </div>
+        <div className="cardContainer">
         { buildEncounters }
+
+        </div>
       </div>
     );
   }
