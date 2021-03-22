@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
+import { Table } from 'reactstrap';
 import monsterData from '../../Helpers/data/monsterData';
 
 class MonsterBar extends React.Component {
@@ -87,15 +88,55 @@ class MonsterBar extends React.Component {
       <div className="row justify-content-between">
         <div className='stat'>
           <h5>Stat Modifiers:</h5>
-          <div className='throw'>
-              STR: {characterData.strength_mod} DEX:  {characterData.dexterity_mod} CON:  {characterData.constitution_mod} INT:  {characterData.intellidence_mod} WIS:  {characterData.wisdom_mod} CHA:  {characterData.charisma_mod}
-            </div>
+          <Table>
+            <thead>
+              <tr>
+                <th>STR</th>
+                <th>DEX</th>
+                <th>CON</th>
+                <th>INT</th>
+                <th>WIS</th>
+                <th>CHA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {characterData.strengthStat} ({ characterData.strength_mod >= 0 ? `+${characterData.strength_mod}` : `${characterData.strength_mod}` })</td>
+                <td> {characterData.dexterityStat} ({ characterData.dexterity_mod >= 0 ? `+${characterData.dexterity_mod}` : `${characterData.dexterity_mod}` })</td>
+                <td> {characterData.constitutionStat} ({ characterData.constitution_mod >= 0 ? `+${characterData.constitution_mod}` : `${characterData.constitution_mod}` })</td>
+                <td> {characterData.intelligenceStat} ({ characterData.intelligence_mod >= 0 ? `+${characterData.intelligence_mod}` : `${characterData.intelligence_mod}` })</td>
+                <td> {characterData.wisdomStat} ({characterData.wisdom_mod >= 0 ? `+${characterData.wisdom_mod}` : `${characterData.wisdom_mod}` })</td>
+                <td> {characterData.charismaStat} ({ characterData.charisma_mod >= 0 ? `+${characterData.charisma_mod}` : `${characterData.charisma_mod}` })</td>
+
+              </tr>
+            </tbody>
+          </Table>
         </div>
         <div className='stat'>
           <h5>Saving Throws:</h5>
-          <div className='throw'>
-            STR: {characterData.strength_savingthrow} DEX:  {characterData.dexterity_savingthrow} CON:  {characterData.constitution_savingthrow} INT:  {characterData.intellidence_savingthrow} WIS:  {characterData.wisdom_savingthrow} CHA:  {characterData.charisma_savingthrow}
-            </div>
+          <Table>
+            <thead>
+              <tr>
+                <th>STR</th>
+                <th>DEX</th>
+                <th>CON</th>
+                <th>INT</th>
+                <th>WIS</th>
+                <th>CHA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> { characterData.strength_savingthrow >= 0 ? `+${characterData.strength_savingthrow}` : `${characterData.strength_savingthrow}` }</td>
+                <td> { characterData.dexterity_savingthrow >= 0 ? `+${characterData.dexterity_savingthrow}` : `${characterData.dexterity_savingthrow}` }</td>
+                <td> { characterData.constitution_savingthrow >= 0 ? `+${characterData.constitution_savingthrow}` : `${characterData.constitution_savingthrow}` }</td>
+                <td> { characterData.intelligence_savingthrow >= 0 ? `+${characterData.intelligence_savingthrow}` : `${characterData.intelligence_savingthrow}` }</td>
+                <td> { characterData.wisdom_savingthrow >= 0 ? `+${characterData.wisdom_savingthrow}` : `${characterData.wisdom_savingthrow}` }</td>
+                <td> { characterData.charisma_savingthrow >= 0 ? `+${characterData.charisma_savingthrow}` : `${characterData.charisma_savingthrow}` }</td>
+
+              </tr>
+            </tbody>
+          </Table>
         </div>
       </div>
       <button onClick={this.updateButton} className="btn btn-success">save</button>
