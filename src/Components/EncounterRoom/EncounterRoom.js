@@ -55,13 +55,27 @@ class EncounterRoom extends React.Component {
       // eslint-disable-next-line max-len
       char.characterId ? <PlayerBar char={char} encounterId={encounterId} updatePlayerPair={this.updatePlayerPair} key={char.id} /> : <MonsterBar char={char} encounterId={encounterId} updateMonsterPair={this.updateMonsterPair} key={char.id} />));
 
+    const buildAllCards = () => {
+      let keyID = 1;
+      const characterBars = [];
+      characters.forEach((char) => {
+        if (char.characterId) {
+          characterBars.push(<PlayerBar char={char} encounterId={encounterId} updatePlayerPair={this.updatePlayerPair} key={keyID} />);
+        } else {
+          characterBars.push(<MonsterBar char={char} encounterId={encounterId} updateMonsterPair={this.updateMonsterPair} key={keyID} />);
+        }
+        keyID += 1;
+      });
+      return characterBars;
+    };
+
     return (
       <div className="flex">
         <h1> {encounter.name} </h1>
         <h3>Room Code: {encounter.roomcode} </h3>
         <h4> Please Save after each change in Initiative and Current Health</h4>
         <div className="character-container">
-          {buildCards}
+          {buildAllCards()}
         </div>
       </div>
     );
