@@ -54,6 +54,12 @@ class EncounterRoom extends React.Component {
       .then((err) => console.error(err));
   }
 
+  deletePlayerPair = (id) => {
+    pairData.deletePlayerPair(id)
+      .then((res) => { this.getPlayerMonsterData(); })
+      .then((err) => console.error(err));
+  }
+
   render() {
     const { encounter, characters, encounterId } = this.state;
 
@@ -62,7 +68,7 @@ class EncounterRoom extends React.Component {
       const characterBars = [];
       characters.forEach((char) => {
         if (char.characterId) {
-          characterBars.push(<PlayerBar char={char} encounterId={encounterId} updatePlayerPair={this.updatePlayerPair} key={keyID} />);
+          characterBars.push(<PlayerBar char={char} encounterId={encounterId} deletePlayerPair={this.deletePlayerPair} updatePlayerPair={this.updatePlayerPair} key={keyID} />);
         } else {
           characterBars.push(<MonsterBar char={char} encounterId={encounterId} deleteMonsterPair={this.deleteMonsterPair} updateMonsterPair={this.updateMonsterPair} key={keyID} />);
         }

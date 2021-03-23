@@ -52,6 +52,12 @@ class PlayerBar extends React.Component {
     this.setState({ initiative: e.target.value });
   }
 
+  deleteButton = (e) => {
+    e.preventDefault();
+    const { deletePlayerPair, char } = this.props;
+    deletePlayerPair(char.id);
+  }
+
   render() {
     const { char } = this.props;
     const { characterData } = this.state;
@@ -135,6 +141,7 @@ class PlayerBar extends React.Component {
         </div>
       </div>
       <button onClick={this.updateButton} className="btn btn-success">save</button>
+      <button onClick={this.deleteButton} className="btn btn-warning">Remove from Encounter</button>
     </div>
   </div>
     );
