@@ -172,14 +172,14 @@ class Monsters extends React.Component {
     return (
       <div>
         <h1>Monsters</h1>
-        <div className="justify-content-center">
-        <form>
-          <div class="form-group col-6">
+        <div className="container">
+        <form className="FormContainer">
+          <div class="form-group col-6 offset-lg-3">
             <label for="monsterName">Search for Monster by Name:</label>
-            <input type="text" onChange={this.updateNameSearch} class="form-control" id="monsterName" aria-describedby="monsterName" placeholder="Monster Name"/>
+            <input type="text" onChange={this.updateNameSearch} class="form-control nameClass" id="monsterName" aria-describedby="monsterName" placeholder="Monster Name"/>
             <button type="submit" onClick={this.searchByName} class="btn btn-primary">Search</button>
           </div>
-          <div className="form-group col-4">
+          <div className="form-group col-4 offset-lg-4">
             <label for="monsterTypeSearch">Search by Type:</label>
             <select className="form-control" id="monsterTypeSearch" onChange={this.updateTypeSearch}>
             <option value={null} >Pick a Type</option>
@@ -187,7 +187,7 @@ class Monsters extends React.Component {
             </select>
             <button type="submit" onClick={this.searchByType} class="btn btn-primary">Search</button>
           </div>
-          <div className="form-group col-4">
+          <div className="form-group col-4 offset-lg-4">
             <label for="monsterCRSearch">Search by CR:</label>
             <select className="form-control" id="monsterCRSearch" onChange={this.updateCrSearch}>
             <option value={null} >Pick a CR</option>

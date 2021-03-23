@@ -54,9 +54,8 @@ class MonsterBar extends React.Component {
 
   deleteButton = (e) => {
     e.preventDefault();
-    const { deletePair, char } = this.props;
-    const obj = { monsterId: char.id };
-    deletePair(obj);
+    const { deleteMonsterPair, char } = this.props;
+    deleteMonsterPair(char.id);
   }
 
   render() {
@@ -139,7 +138,9 @@ class MonsterBar extends React.Component {
           </Table>
         </div>
       </div>
-      <button onClick={this.updateButton} className="btn btn-success">save</button>
+      <button onClick={this.updateButton} className="btn btn-success">Save</button>
+      <button onClick={this.deleteButton} className="btn btn-warning">Remove from Encounter</button>
+
     </div>
   </div>
     );
