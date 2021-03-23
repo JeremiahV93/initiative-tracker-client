@@ -48,21 +48,29 @@ class EncounterRoom extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  deleteMonsterPair = (id) => {
+    pairData.deleteMonsterPair(id)
+      .then((res) => { this.getPlayerMonsterData(); })
+      .then((err) => console.error(err));
+  }
+
+  deletePlayerPair = (id) => {
+    pairData.deletePlayerPair(id)
+      .then((res) => { this.getPlayerMonsterData(); })
+      .then((err) => console.error(err));
+  }
+
   render() {
     const { encounter, characters, encounterId } = this.state;
-
-    const buildCards = characters.map((char) => (
-      // eslint-disable-next-line max-len
-      char.characterId ? <PlayerBar char={char} encounterId={encounterId} updatePlayerPair={this.updatePlayerPair} key={char.id} /> : <MonsterBar char={char} encounterId={encounterId} updateMonsterPair={this.updateMonsterPair} key={char.id} />));
 
     const buildAllCards = () => {
       let keyID = 1;
       const characterBars = [];
       characters.forEach((char) => {
         if (char.characterId) {
-          characterBars.push(<PlayerBar char={char} encounterId={encounterId} updatePlayerPair={this.updatePlayerPair} key={keyID} />);
+          characterBars.push(<PlayerBar char={char} encounterId={encounterId} deletePlayerPair={this.deletePlayerPair} updatePlayerPair={this.updatePlayerPair} key={keyID} />);
         } else {
-          characterBars.push(<MonsterBar char={char} encounterId={encounterId} updateMonsterPair={this.updateMonsterPair} key={keyID} />);
+          characterBars.push(<MonsterBar char={char} encounterId={encounterId} deleteMonsterPair={this.deleteMonsterPair} updateMonsterPair={this.updateMonsterPair} key={keyID} />);
         }
         keyID += 1;
       });
@@ -72,9 +80,8 @@ class EncounterRoom extends React.Component {
     return (
       <div className="flex">
         <h1> {encounter.name} </h1>
-        <h3>Room Code: {encounter.roomcode} </h3>
-        <h4> Please Save after each change in Initiative and Current Health</h4>
-        <div className="character-container">
+        <h4> You must click the 'Save' button on a character after a change in Initiative and Current Health.</h4>
+        <div className="character-container align-content-center">
           {buildAllCards()}
         </div>
       </div>
