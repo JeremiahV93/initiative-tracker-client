@@ -5,17 +5,19 @@ const url = 'http://127.0.0.1:8000/encounterpairs';
 const monsterUrl = 'http://127.0.0.1:8000/monsterPairs';
 const playerUrl = 'http://127.0.0.1:8000/playerPairs';
 
+const token = localStorage.getItem('token');
+
 const headers = () => (
   {
     headers: {
-      Authorization: `Token ${localStorage.getItem('token')}`,
+      Authorization: `Token ${token}`,
     },
   }
 );
 
 const createHeaders = {
   headers: {
-    Authorization: `Token ${localStorage.getItem('token')}`,
+    Authorization: `Token ${token}`,
     'Content-Type': 'application/json',
   },
 };

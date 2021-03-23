@@ -18,7 +18,7 @@ class Characters extends React.Component {
     playerId: null,
   }
 
-  getEncountersForModal = (campaignId) => {
+  getEncountersForModal = () => {
     encounterData.getAllActiveEncounters()
       .then((res) => {
         this.setState({ encounters: res.data });
@@ -75,7 +75,7 @@ class Characters extends React.Component {
     const toggle = () => this.setState({ modal: !modal });
 
     const openModal = (cid, characterId) => {
-      this.setState({ characterId, campaignId: cid });
+      this.setState({ characterId, campaignId: cid.id });
       toggle();
     };
 
