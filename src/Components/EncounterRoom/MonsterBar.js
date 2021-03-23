@@ -74,10 +74,10 @@ class MonsterBar extends React.Component {
             /{char.monsterId.maxHP}
           </div>
           <div className='stat'>
-            <i className="fas fa-shield-alt"></i> AC:{char.monsterId.AC}
+            <i className="fas fa-shield-alt"></i> AC: {char.monsterId.AC}
           </div>
           <div className='stat'>
-            <i className="fas fa-shoe-prints"></i>Speed:{char.monsterId.speed}
+            <i className="fas fa-shoe-prints"></i>Speed: {char.monsterId.speed}
           </div>
           <div>
             <i class="fas fa-hourglass-half"></i>

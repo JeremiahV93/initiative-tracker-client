@@ -56,9 +56,9 @@ class CharacterCard extends React.Component {
             </tbody>
           </Table>
           <ButtonGroup>
-            <Button onClick={updateEvent}> Update</Button>
-            <Button onClick={modalButton}> Add to an Encounter</Button>
-            <Button onClick={deleteCharEvent} > Delete</Button>
+            <Button onClick={updateEvent} className="btn-warning"> Update</Button>
+            <Button onClick={modalButton} className="btn-info"> Add to an Encounter</Button>
+            <Button onClick={deleteCharEvent} className="btn-danger" > Delete</Button>
           </ButtonGroup>
         </CardBody>
       </Card>

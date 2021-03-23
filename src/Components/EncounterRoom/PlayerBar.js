@@ -73,10 +73,10 @@ class PlayerBar extends React.Component {
             /{char.characterId.maxHP}
           </div>
           <div className='stat'>
-            <i className="fas fa-shield-alt"></i> AC:{char.characterId.AC}
+            <i className="fas fa-shield-alt"></i> AC: {char.characterId.AC}
           </div>
           <div className='stat'>
-            <i className="fas fa-shoe-prints"></i>Speed:{char.characterId.speed}
+            <i className="fas fa-shoe-prints"></i>Speed: {char.characterId.speed}
           </div>
           <div>
             <i class="fas fa-hourglass-half"></i>

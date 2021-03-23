@@ -80,8 +80,8 @@ class EncounterRoom extends React.Component {
     return (
       <div className="flex">
         <h1> {encounter.name} </h1>
-        <h4> You must click the 'Save' button on a character after a change in Initiative and Current Health.</h4>
-        <div className="character-container align-content-center">
+        <h4> You must click the 'Save' button on a character after a change in Initiative and/or Current Health.</h4>
+        <div className="character-container">
           {buildAllCards()}
         </div>
       </div>

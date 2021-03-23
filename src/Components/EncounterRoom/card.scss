@@ -8,7 +8,7 @@
 .character-container {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    justify-content: center;
 }
 
 .monster-card {
@@ -17,4 +17,8 @@
 
 .player-card {
     border: solid 7px #236af7;
+}
+
+i {
+    margin-right: .5em;
 }
