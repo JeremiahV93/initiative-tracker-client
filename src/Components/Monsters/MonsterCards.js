@@ -19,8 +19,8 @@ class MonsterCard extends React.Component {
       <Card >
         <CardBody>
           <CardTitle tag="h5">{monster.name}</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">Type: {monster.monsterType} Max HP: {monster.maxHP} </CardSubtitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">Size: {monster.size}  AC: {monster.AC}</CardSubtitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">Type: {monster.monsterType} Challenge Rating: {monster.challengeRating} </CardSubtitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">Size: {monster.size}  AC: {monster.AC} Max HP: {monster.maxHP}  </CardSubtitle>
 
           <Table>
             <thead>

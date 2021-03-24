@@ -5,3 +5,14 @@
 body {
   background-color: #DEC358;
 }
+
+@font-face {
+  font-family: 'mulan';
+  src: local('mulan'), url('../Assets//Mulan.ttf') format('truetype')
+}
+
+h1 {
+  font-size: 4.5em;
+  margin-top: .5em !important;
+  margin-bottom: .5em !important;
+}

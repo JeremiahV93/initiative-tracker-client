@@ -60,6 +60,10 @@ class EncounterRoom extends React.Component {
       .then((err) => console.error(err));
   }
 
+  goToTop = () => {
+    window.scroll(0, 0);
+  }
+
   render() {
     const { encounter, characters, encounterId } = this.state;
 
@@ -84,6 +88,7 @@ class EncounterRoom extends React.Component {
         <div className="character-container">
           {buildAllCards()}
         </div>
+        <button type='button' onClick={this.goToTop} className="btn btn-info"> Go to top</button>
       </div>
     );
   }
