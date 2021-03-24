@@ -60,6 +60,10 @@ class EncounterRoom extends React.Component {
       .then((err) => console.error(err));
   }
 
+  goToTop = () => {
+    window.scroll(0, 0);
+  }
+
   render() {
     const { encounter, characters, encounterId } = this.state;
 
@@ -80,10 +84,11 @@ class EncounterRoom extends React.Component {
     return (
       <div className="flex">
         <h1> {encounter.name} </h1>
-        <h4> You must click the 'Save' button on a character after a change in Initiative and Current Health.</h4>
-        <div className="character-container align-content-center">
+        <h4> You must click the 'Save' button on a character after a change in Initiative and/or Current Health.</h4>
+        <div className="character-container">
           {buildAllCards()}
         </div>
+        <button type='button' onClick={this.goToTop} className="btn btn-info"> Go to top</button>
       </div>
     );
   }

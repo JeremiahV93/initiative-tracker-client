@@ -195,16 +195,17 @@ class Monsters extends React.Component {
             </select>
             <button type="submit" onClick={this.searchByCR} class="btn btn-primary">Search</button>
           </div>
-          <button type="submit" onClick={this.getActiveUserMonsters} class="btn btn-primary">My Monsters</button>
-          <button type="submit" onClick={this.resetMonsterPage} class="btn btn-primary">All Monsters</button>
-          <button onClick={this.goToMonsterForm} className='btn btn-primary'> Create Monster</button>
-
+          <div >
+            <button type="submit" onClick={this.getActiveUserMonsters} class=" buttonGroup btn btn-primary">My Monsters</button>
+            <button type="submit" onClick={this.resetMonsterPage} class=" buttonGroup btn btn-primary">All Monsters</button>
+            <button onClick={this.goToMonsterForm} className='buttonGroup btn btn-primary'> Create Monster</button>
+          </div>
         </form>
         </div>
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center pagination-lg">
           <button value={prevUrl} onClick={this.previousPage} class="btn btn-primary">Prev</button>
-          <button value={nextUrl} onClick={this.nextPage} class="btn btn-primary">Next</button>
+          <button value={nextUrl} onClick={this.nextPage} class="btn buttonGroup btn-primary">Next</button>
           </ul>
         </nav>
 
@@ -215,7 +216,7 @@ class Monsters extends React.Component {
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center pagination-lg">
           <button value={prevUrl} onClick={this.previousPage} class="btn btn-primary">Prev</button>
-          <button value={nextUrl} onClick={this.nextPage} class="btn btn-primary">Next</button>
+          <button value={nextUrl} onClick={this.nextPage} class=" buttonGroup btn btn-primary">Next</button>
           </ul>
         </nav>
 
