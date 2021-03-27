@@ -1,36 +1,18 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
+import apiData from './serverFiles';
 
-const url = 'http://127.0.0.1:8000/';
+const createEncounter = (encounterObj) => axios.post(`${apiData.url}/encounters`, encounterObj, apiData.createHeaders);
 
-const token = localStorage.getItem('token');
+const updateEncounter = (id, encounterObj) => axios.put(`${apiData.url}/encounters/${id}`, encounterObj, apiData.createHeaders);
 
-const headers = () => (
-  {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  }
-);
+const deleteEncounter = (id) => axios.delete(`${apiData.url}/encounters/${id}`, apiData.headers());
 
-const createHeaders = {
-  headers: {
-    Authorization: `Token ${token}`,
-    'Content-Type': 'application/json',
-  },
-};
+const getAllActiveEncounters = () => axios.get(`${apiData.url}/encounters?archive=False`, apiData.headers());
 
-const createEncounter = (encounterObj) => axios.post(`${url}encounters`, encounterObj, createHeaders);
+const getOneEncounter = (id) => axios.get(`${apiData.url}/encounters/${id}`, apiData.headers());
 
-const updateEncounter = (id, encounterObj) => axios.put(`${url}encounters/${id}`, encounterObj, createHeaders);
-
-const deleteEncounter = (id) => axios.delete(`${url}encounters/${id}`, headers());
-
-const getAllActiveEncounters = () => axios.get(`${url}encounters?archive=False`, headers());
-
-const getOneEncounter = (id) => axios.get(`${url}encounters/${id}`, headers());
-
-const getEncountersOnCampaignID = (encounterId) => axios.get(`${url}encounters/${encounterId}`, headers());
+const getEncountersOnCampaignID = (encounterId) => axios.get(`${apiData.url}/encounters/${encounterId}`, apiData.headers());
 
 export default {
   createEncounter, getAllActiveEncounters, updateEncounter, deleteEncounter, getEncountersOnCampaignID, getOneEncounter,
