@@ -11,7 +11,7 @@ import './App.scss';
 
 // import userData from '../Helpers/data/userData';
 import Navbar from '../Components/Navbar/NavBar';
-// import Home from '../Components/Home';
+import Home from '../Components/Home';
 import LandingPage from '../Components/LandingPage/LandingPage';
 import Login from '../Components/Auth/Auth';
 import NewUser from '../Components/NewUser';
@@ -40,7 +40,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 const RoutesContainer = ({ authed, authToggle }) => (
     <div>
       <Switch>
-        <PrivateRoute path="/home" component={Encounters} authed={authed} />
+        <PrivateRoute path="/home" component={Home} authed={authed} />
         <PrivateRoute path="/encounters" component={Encounters} authed={authed} />
         <PrivateRoute path="/encounters/:campaignId" component={Encounters} authed={authed} />
         <PrivateRoute path="/monsters" component={Monsters} authed={authed} />

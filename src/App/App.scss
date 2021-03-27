@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+p {
+  font-size: 22px;
+  margin-left: 5em;
+  margin-right: 5em;
+  font-family: raleway, serif;
+  @font-face {
+    font-family: 'raleway';
+    src: local('raleway'), url('../Assets/Raleway.ttf') format('truetype')
+  }
+}

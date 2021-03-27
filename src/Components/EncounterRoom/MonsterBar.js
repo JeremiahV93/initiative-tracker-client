@@ -75,12 +75,12 @@ class MonsterBar extends React.Component {
     return (
       <div className="card monster-card container">
       <div className="card-body ">
-        <h4 className="card-title">{char.monsterId.name}</h4>
+        <h4 className="card-title characterName">{char.monsterId.name}</h4>
         <h6 className="card-subtitle mb-2 text-muted"> Type: {char.monsterId.monsterType} Challenge Rating: {char.monsterId.challengeRating} Size: {char.monsterId.size} </h6>
         <div className="row justify-content-around">
           <div className='stat'>
           <i className="fas fa-heart"></i> HP:
-            <input onChange={this.updateHP} type='number' defaultValue={char.currentHealth}></input>
+            <input onChange={this.updateHP} type='number' className="healhInput" defaultValue={char.currentHealth}></input>
             /{char.monsterId.maxHP}
           </div>
           <div className='stat'>
@@ -91,7 +91,7 @@ class MonsterBar extends React.Component {
           </div>
           <div>
             <i class="fas fa-hourglass-half"></i>
-            <label>Initiative: <input type="number" onChange={this.updateIni} defaultValue={char.initiative}></input> </label>
+            <label>Initiative: <input type="number" className='initiativeInput' onChange={this.updateIni} defaultValue={char.initiative}></input> </label>
           </div>
       </div>
       <div className="row justify-content-between">
