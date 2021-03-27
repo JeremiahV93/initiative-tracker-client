@@ -17,6 +17,7 @@ const createHeaders = {
   headers: {
     Authorization: `Token ${token}`,
     'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
   },
 };
 
