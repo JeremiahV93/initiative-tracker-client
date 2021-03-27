@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import monsterData from '../../Helpers/data/monsterData';
 
 class MonsterBar extends React.Component {
@@ -21,7 +21,7 @@ class MonsterBar extends React.Component {
   componentDidMount() {
     const { char } = this.props;
     this.getData();
-    this.setState({ currentHealth: char.currentHealth, initiative: char.initiative });
+    this.setState({ currentHealth: char.currentHealth, initiative: char.initiative, concentration: char.concentration });
   }
 
   updateButton = () => {
@@ -42,11 +42,6 @@ class MonsterBar extends React.Component {
     this.setState({ currentHealth: e.target.value });
   }
 
-  updateConcenration = (e) => {
-    e.preventDefault();
-    this.setState({ concentration: e.target.value });
-  }
-
   updateIni = (e) => {
     e.preventDefault();
     this.setState({ initiative: e.target.value });
@@ -58,9 +53,24 @@ class MonsterBar extends React.Component {
     deleteMonsterPair(char.id);
   }
 
+  toggleConcentration = () => {
+    const { concentration } = this.state;
+    this.setState({ concentration: !concentration });
+  }
+
   render() {
     const { char } = this.props;
-    const { characterData } = this.state;
+    const { characterData, concentration } = this.state;
+
+    const buildConcentration = () => {
+      let thing = <div></div>;
+      if (concentration) {
+        thing = <h5>Concentration <Button onClick={this.toggleConcentration} color="primary">Focused</Button> </h5>;
+      } else {
+        thing = <h5>Concentration <Button onClick={this.toggleConcentration} outline color="primary">Unfocused</Button> </h5>;
+      }
+      return thing;
+    };
 
     return (
       <div className="card monster-card container">
@@ -110,6 +120,9 @@ class MonsterBar extends React.Component {
               </tr>
             </tbody>
           </Table>
+        </div>
+        <div>
+        { buildConcentration() }
         </div>
         <div className='stat'>
           <h5>Saving Throws:</h5>
