@@ -1,32 +1,14 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
+import apiData from './serverFiles';
 
-const url = 'http://127.0.0.1:8000/';
+const createCampaign = (campaignObj) => axios.post(`${apiData.url}/campaigns`, campaignObj, apiData.createHeaders);
 
-const token = localStorage.getItem('token');
+const updateCampaign = (id, campaignObj) => axios.put(`${apiData.url}/campaigns/${id}`, campaignObj, apiData.createHeaders);
 
-const headers = () => (
-  {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  }
-);
+const deleteCampaign = (id) => axios.delete(`${apiData.url}/campaigns/${id}`, apiData.headers());
 
-const createHeaders = {
-  headers: {
-    Authorization: `Token ${token}`,
-    'Content-Type': 'application/json',
-  },
-};
-
-const createCampaign = (campaignObj) => axios.post(`${url}campaigns`, campaignObj, createHeaders);
-
-const updateCampaign = (id, campaignObj) => axios.put(`${url}campaigns/${id}`, campaignObj, createHeaders);
-
-const deleteCampaign = (id) => axios.delete(`${url}campaigns/${id}`, headers());
-
-const getAllActiveCampaigns = () => axios.get(`${url}campaigns?archive=False`, headers());
+const getAllActiveCampaigns = () => axios.get(`${apiData.url}/campaigns?archive=False`, apiData.headers());
 
 export default {
   createCampaign, updateCampaign, deleteCampaign, getAllActiveCampaigns,

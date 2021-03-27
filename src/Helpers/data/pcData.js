@@ -1,34 +1,16 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
+import apiData from './serverFiles';
 
-const url = 'http://127.0.0.1:8000/players';
+const getAllPCs = () => axios.get(`${apiData.url}/players`, apiData.headers());
 
-const token = localStorage.getItem('token');
+const getOnePC = (pcID) => axios.get(`${apiData.url}/players/${pcID}`, apiData.headers());
 
-const headers = () => (
-  {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  }
-);
+const updatePC = (pcId, pcObj) => axios.put(`${apiData.url}/players/${pcId}`, pcObj, apiData.createHeaders);
 
-const createHeaders = {
-  headers: {
-    Authorization: `Token ${token}`,
-    'Content-Type': 'application/json',
-  },
-};
+const deletePC = (pcId) => axios.delete(`${apiData.url}/players/${pcId}`, apiData.headers());
 
-const getAllPCs = () => axios.get(`${url}`, headers());
-
-const getOnePC = (pcID) => axios.get(`${url}/${pcID}`, headers());
-
-const updatePC = (pcId, pcObj) => axios.put(`${url}/${pcId}`, pcObj, createHeaders);
-
-const deletePC = (pcId) => axios.delete(`${url}/${pcId}`, headers());
-
-const createPC = (pcObj) => axios.post(`${url}`, pcObj, createHeaders);
+const createPC = (pcObj) => axios.post(`${apiData.url}/players`, pcObj, apiData.createHeaders);
 
 export default {
   getAllPCs, updatePC, deletePC, createPC, getOnePC,

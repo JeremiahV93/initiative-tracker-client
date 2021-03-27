@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
 
-const url = 'http://127.0.0.1:8000/';
+const url = 'https://initiative-tracker-server-6i8q6.ondigitalocean.app/';
 
 const authUser = (authCredentials) => axios.post(`${url}login`, authCredentials);
 
