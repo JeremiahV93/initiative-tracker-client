@@ -29,7 +29,7 @@ class CharacterCard extends React.Component {
       <div className='characterCard'>
       <Card >
         <CardBody>
-          <CardTitle tag="h5">{character.name}</CardTitle>
+          <CardTitle className='characterName' tag="h5">{character.name}</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">Campaign: {character.campaign.name} </CardSubtitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">Max HP: {character.maxHP}  AC: {character.AC} </CardSubtitle>
           <Table>

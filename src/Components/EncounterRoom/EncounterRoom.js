@@ -85,15 +85,15 @@ class EncounterRoom extends React.Component {
     return (
       <div>
         <h1> {encounter.name} </h1>
-        <h4> You must click the 'Save' button on a character after a change in Initiative and/or Current Health.</h4>
+        <h4> You must click the 'Save' button on a Character after a change in Initiative , Concentration, or Current Health.</h4>
         <Container className="roomContainer">
           <Row>
             <Col lg="12">
               {buildAllCards()}
             </Col>
-            <Col lg="6">
-              H1 Widget
-            </Col>
+            {/* <Col lg="6">
+              Try to get a second column for a note page, and collapsable widgets for status effects
+            </Col> */}
           </Row>
         </Container>
         <button type='button' onClick={this.goToTop} className="btn btn-info"> Go to top</button>

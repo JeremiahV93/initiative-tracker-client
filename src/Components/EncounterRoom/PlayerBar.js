@@ -77,12 +77,12 @@ class PlayerBar extends React.Component {
     return (
       <div className="card player-card container">
       <div className="card-body">
-        <h4 className="card-title">{char.characterId.name}</h4>
+        <h4 className="card-title characterName">{char.characterId.name}</h4>
         <h6 className="card-subtitle mb-2 text-muted"> Level: {char.characterId.level} {char.characterId.characterClass}</h6>
         <div className="row justify-content-around">
           <div className='stat'>
           <i className="fas fa-heart"></i> HP:
-            <input onChange={this.updateHP} type='number' defaultValue={char.currentHealth}></input>
+            <input onChange={this.updateHP} className="healhInput" type='number' defaultValue={char.currentHealth}></input>
             /{char.characterId.maxHP}
           </div>
           <div className='stat'>
@@ -93,7 +93,7 @@ class PlayerBar extends React.Component {
           </div>
           <div>
             <i class="fas fa-hourglass-half"></i>
-            <label>Initiative: <input onChange={this.updateIni} type="number" defaultValue={char.initiative}></input> </label>
+            <label>Initiative: <input onChange={this.updateIni} className='initiativeInput' type="number" defaultValue={char.initiative}></input> </label>
           </div>
       </div>
       <div className="row justify-content-between">

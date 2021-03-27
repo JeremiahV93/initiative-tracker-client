@@ -21,7 +21,7 @@ class CampaignCard extends React.Component {
       <div>
         <Card className="campaignCard">
           <CardBody>
-            <CardTitle tag="h3">{campaign.name}</CardTitle>
+            <CardTitle className='campaignName' tag="h3">{campaign.name}</CardTitle>
             <ButtonGroup>
               {/* <Button color="success" onClick={link}>See Encounters</Button> */}
               <Button color="warning" onClick={updateTrigger}>Update</Button>
