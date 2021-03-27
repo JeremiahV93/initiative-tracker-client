@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import playerData from '../../Helpers/data/pcData';
 
 class PlayerBar extends React.Component {
   state = {
     characterData: [],
     initiative: 0,
-    concentration: false,
+    concentration: null,
     currentHealth: 0,
   }
 
@@ -21,7 +21,7 @@ class PlayerBar extends React.Component {
   componentDidMount() {
     const { char } = this.props;
     this.getData();
-    this.setState({ currentHealth: char.currentHealth, initiative: char.initiative });
+    this.setState({ currentHealth: char.currentHealth, initiative: char.initiative, concentration: char.concentration });
   }
 
   updateButton = () => {
@@ -42,11 +42,6 @@ class PlayerBar extends React.Component {
     this.setState({ currentHealth: e.target.value });
   }
 
-  updateConcenration = (e) => {
-    e.preventDefault();
-    this.setState({ concentration: e.target.value });
-  }
-
   updateIni = (e) => {
     e.preventDefault();
     this.setState({ initiative: e.target.value });
@@ -58,9 +53,27 @@ class PlayerBar extends React.Component {
     deletePlayerPair(char.id);
   }
 
+  toggleConcentration = () => {
+    const { concentration } = this.state;
+    this.setState({ concentration: !concentration });
+  }
+
   render() {
     const { char } = this.props;
-    const { characterData } = this.state;
+    const { characterData, concentration } = this.state;
+
+    const buildConcentration = () => {
+      let thing = <div></div>;
+      if (characterData.spellSave_DC > 0) {
+        if (concentration) {
+          thing = <h5>Concentration <Button onClick={this.toggleConcentration} color="primary">Focused</Button> </h5>;
+        } else {
+          thing = <h5>Concentration <Button onClick={this.toggleConcentration} outline color="primary">Unfocused</Button> </h5>;
+        }
+      }
+      return thing;
+    };
+
     return (
       <div className="card player-card container">
       <div className="card-body">
@@ -110,8 +123,11 @@ class PlayerBar extends React.Component {
             </tbody>
           </Table>
         </div>
-        <div>
+        <div className="col">
           { characterData.spellSave_DC === 0 ? <div></div> : <h5>Spell Save DC: {characterData.spellSave_DC} </h5> }
+        </div>
+        <div className="col">
+          { buildConcentration() }
         </div>
         <div className='stat'>
           <h5>Saving Throws:</h5>

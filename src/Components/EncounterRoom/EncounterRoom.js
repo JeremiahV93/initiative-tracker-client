@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import pairData from '../../Helpers/data/encounterPair';
 import encounterData from '../../Helpers/data/encounterData';
 import PlayerBar from './PlayerBar';
@@ -82,12 +83,19 @@ class EncounterRoom extends React.Component {
     };
 
     return (
-      <div className="flex">
+      <div>
         <h1> {encounter.name} </h1>
         <h4> You must click the 'Save' button on a character after a change in Initiative and/or Current Health.</h4>
-        <div className="character-container">
-          {buildAllCards()}
-        </div>
+        <Container className="roomContainer">
+          <Row>
+            <Col lg="12">
+              {buildAllCards()}
+            </Col>
+            <Col lg="6">
+              H1 Widget
+            </Col>
+          </Row>
+        </Container>
         <button type='button' onClick={this.goToTop} className="btn btn-info"> Go to top</button>
       </div>
     );
