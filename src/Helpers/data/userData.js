@@ -10,8 +10,8 @@ const createHeaders = {
   },
 };
 
-const authUser = (authCredentials) => axios.post(`${url}login`, authCredentials, createHeaders);
+const authUser = (authCredentials) => axios.post(`${url}login/`, authCredentials, createHeaders);
 
-const newUser = (newUserObj) => axios.post(`${url}register`, newUserObj, createHeaders);
+const newUser = (newUserObj) => axios.post(`${url}register/`, newUserObj, createHeaders);
 
 export default { authUser, newUser };
