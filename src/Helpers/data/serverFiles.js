@@ -9,6 +9,7 @@ const headers = () => (
   {
     headers: {
       Authorization: `Token ${token}`,
+      'X-Requested-With': 'XMLHttpRequest',
     },
   }
 );
