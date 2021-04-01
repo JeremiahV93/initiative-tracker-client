@@ -211,7 +211,7 @@ class Monsters extends React.Component {
             <button type="submit" onClick={this.getActiveUserMonsters} class=" buttonGroup btn btn-primary">My Monsters</button>
             <button type="submit" onClick={this.resetMonsterPage} class=" buttonGroup btn btn-primary">All Monsters</button>
             <button onClick={this.goToMonsterForm} className='buttonGroup btn btn-primary'> Create Monster</button>
-            <button onClick={this.scrapButton} className='buttonGroup btn btn-primary'> Scrap monsters</button>
+            {/* <button onClick={this.scrapButton} className='buttonGroup btn btn-primary'> Scrap monsters</button> */}
 
           </div>
         </form>
